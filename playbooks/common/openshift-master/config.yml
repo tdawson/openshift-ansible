@@ -17,3 +17,9 @@
   roles:
   - pods
   - os_env_extras
+  - dockercfg
+  - role: openshift_expand_partition
+    oep_drive: "/dev/xvda"
+    oep_partition: 3
+    oep_file_system: "xfs"
+

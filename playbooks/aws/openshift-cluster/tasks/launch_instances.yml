@@ -118,6 +118,13 @@
   - instances
   - ec2.instances
 
+- name: Add docker partition
+  ec2_vol:
+    instance: "{{ item }}"
+    volume_size: 100
+    device_name: sdt
+  with_items: ec2.instances
+
 - name: Wait for ssh
   wait_for: "port=22 host={{ item.dns_name }}"
   with_items: ec2.instances

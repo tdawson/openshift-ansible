@@ -1,0 +1,21 @@
+--- playbooks/common/openshift-node/config.yml
++++ playbooks/common/openshift-node/config.yml
+@@ -142,3 +149,18 @@
+   roles:
+   - os_env_extras
+   - os_env_extras_node
++  - dockercfg
++  - role: openshift_expand_partition
++    oep_drive: "/dev/xvda"
++    oep_partition: 3
++    oep_file_system: "xfs"
++  - role: docker_storage
++    dst_device: /dev/xvdt
++    dst_vg: direct-lvm
++    dst_options:
++    - key: dm.datadev
++      value: /dev/direct-lvm/data
++    - key: dm.metadatadev
++      value: /dev/direct-lvm/metadata
++    - key: dm.fs
++      value: xfs

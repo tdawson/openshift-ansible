@@ -128,13 +128,6 @@
   - file: name={{ mktemp.stdout }} state=absent
     changed_when: False
 
-- name: Add docker partition
-  ec2_vol:
-    instance: "{{ item }}"
-    volume_size: 100
-    device_name: sdt
-  with_items: ec2.instances
-
 # Additional config for online type deployments
 - name: Additional instance config
   hosts: oo_nodes_deployment_type_online
@@ -142,21 +135,6 @@
   roles:
   - os_env_extras
   - os_env_extras_node
-  - dockercfg
-  - role: openshift_expand_partition
-    oep_drive: "/dev/xvda"
-    oep_partition: 3
-    oep_file_system: "xfs"
-  - role: docker_storage
-    dst_device: /dev/xvdt
-    dst_vg: direct-lvm
-    dst_options:
-    - key: dm.datadev
-      value: /dev/direct-lvm/data
-    - key: dm.metadatadev
-      value: /dev/direct-lvm/metadata
-    - key: dm.fs
-      value: xfs
 
 - name: Set scheduleability
   hosts: oo_first_master
