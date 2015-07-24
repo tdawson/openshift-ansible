@@ -56,6 +56,12 @@
 
 - include: update.yml
 
+- include: label.yml
+  vars:
+    instances: "{{ node_names }}"
+    g_svc_master: "{{ service_master }}"
+    g_sub_host_type: "{{ sub_host_type }}"
+
 - include: ../../common/openshift-cluster/create_services.yml
   vars:
      g_svc_master: "{{ service_master }}"

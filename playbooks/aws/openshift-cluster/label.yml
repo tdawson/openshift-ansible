@@ -1,0 +1,10 @@
+---
+- name: Label all compute nodes
+  hosts: "{{ g_svc_master }}"
+  gather_facts: no
+  vars_files:
+  - vars.yml
+  tasks:
+  - name: Labeling nodes
+    command: "{{ openshift.common.client_binary }} label node {{ item }} region={{ item.ec2_region }} type={{ item.sub_host_type }}"
+    with_items: (groups["tag_env-host-type_{{ cluster_id }}-openshift-node"] | default([]))
