@@ -1,4 +1,0 @@
-- name: Wait for Node Registration
-  command: >
-      {{ openshift.common.client_binary }} label node  {{ item.hostname }} region=us-east type={{ item.sub_host_type }}
-  with_items: openshift_nodes
