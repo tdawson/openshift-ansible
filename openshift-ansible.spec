@@ -36,3 +36,6 @@ cp -rp * %{buildroot}%{_datadir}/%{name}
 %{_datadir}/%{name}
 
 %changelog
+* Mon Oct 19 2015 Troy Dawson <tdawson@redhat.com> 3.0.2-1
+- Initial Package
+
